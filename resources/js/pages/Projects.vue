@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../data/data';
 import ProjectItem from '../components/ProjectItem.vue'
+import FormSearch from '../components/FormSearch.vue'
 export default {
     name: 'Projects',
     data() {
@@ -13,7 +14,7 @@ export default {
             }
         }
     },
-    components: { ProjectItem },
+    components: { ProjectItem, FormSearch },
     methods: {
         getApi(page) {
             this.pagination.current = page;
@@ -40,10 +41,15 @@ export default {
 
     <h1>Projects List</h1>
 
+    <FormSearch />
+
     <ProjectItem v-for="project in projects" :key="project.id" :project="project"/>
 
     <div class="paginate">
-        <button :disabled="pagination.current === 1" @click="getApi(1)"> | &lt; </button>
+        <button :disabled="pagination.current === 1" @click="getApi(1)"> | &lt;
+        </button>
+
+
         <button :disabled="pagination.current === 1" @click="getApi(pagination.current - 1)">
             &larr;
         </button>

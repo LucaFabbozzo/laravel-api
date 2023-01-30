@@ -28,7 +28,7 @@ export default {
 
 <template>
     <div class="show-box">
-        <img :src="project.cover_image" :alt="project.name">
+        <img style="width: 100px;" :src="project.cover_image" :alt="project.name">
         <h1>{{ project.name }}</h1>
         <h3>{{ project.client_name }}</h3>
         <p>{{ project.summary }}</p>
