@@ -38,7 +38,18 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $val_data = $request->validate(
+            [
+                'name' => 'required|unique:types',
+            ]
+        );
+        $slug = Str::slug($val_data['name']);
+        $val_data['slug'] = $slug;
+
+        Type::create($val_data);
+
+        return redirect()->back()->with('message', "Technology  $request->name it was updated successfully");
+
     }
 
     /**
@@ -90,8 +101,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->back()->with('message', "Type $type->name successfully deleted");
     }
 }

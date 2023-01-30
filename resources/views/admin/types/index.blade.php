@@ -7,6 +7,15 @@
                 {{session('message')}}
              </div>
          @endif
+         <h1 class="fs-4 py-3">Types controls</h1>
+           <form  action="{{route('admin.types.store')}}" method="POST">
+            @csrf
+            <div class="input-group my-4 w-50 m-auto">
+                <input type="text" class="form-control" name="name" placeholder="Add new type">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                <i class="fa-solid fa-plus me-2"></i>Add</button>
+            </div>
+        </form>
         <table class="table">
             <thead>
                 <tr>
@@ -24,8 +33,16 @@
                             <input type="text" class="border-0 p-2 rounded me-1" name="name" value="{{ $type->name }}">
                             <button type="submit" class="btn btn-outline-warning">Update</button>
                         </form>
+
                     </td>
                     <td>{{ count($type->types) }}</td>
+                    <td>
+                        @include('admin.partials.form-delete', [
+                            'route' => 'types',
+                            'message' => "Confirm delete of this type: $type->name ?",
+                            'entity' => $type
+                        ])
+                    </td>
                 </tr>
                 @empty
                 <tr>

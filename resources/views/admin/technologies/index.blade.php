@@ -7,7 +7,7 @@
                 {{session('message')}}
              </div>
          @endif
-
+        <h1 class="fs-4 py-3">Technologies controls</h1>
         <form  action="{{route('admin.technologies.store')}}" method="POST">
             @csrf
             <div class="input-group my-4 w-50 m-auto">
