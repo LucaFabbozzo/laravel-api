@@ -11,10 +11,13 @@ export default {
             object: '',
             message: '',
             errors: {},
+            loading: false,
+            show: true
         }
     },
     methods: {
         sendForm() {
+            this.loading = true;
             const data = {
                 name: this.name,
                 email: this.email,
@@ -24,6 +27,8 @@ export default {
 
             axios.post(BASE_URL + 'contacts', data)
                 .then(result => {
+                    this.loading = false;
+                    this.show = false;
                     if (!result.data.success) {
                         this.errors = result.data.errors;
                     } else {
@@ -41,7 +46,7 @@ export default {
 </script>
 
 <template>
-    <form @submit.prevent="sendForm()">
+    <form v-if="show" @submit.prevent="sendForm()">
         <div>
             <input :class="{'is-invalid' : errors.name}" v-model.trim="name" type="text" placeholder="Name">
             <p v-for="(error, index) in errors.name" :key="'name' + index" class="error">{{ error }}</p>
@@ -58,15 +63,35 @@ export default {
            <textarea :class="{'is-invalid' : errors.message}" v-model.trim="message" name="" id="" cols="30" placeholder="Message" rows="10"></textarea>
            <p v-for="(error, index) in errors.message" :key="'message' + index" class="error">{{ error }}</p>
         </div>
-        <button type="submit">Send</button>
+        <button type="submit" :disabled="loading">{{ loading ? 'Sending email...' : 'Send' }}</button>
     </form>
+
+    <h3 v-else>Email successfully sent!</h3>
 
 </template>
 
 
 <style lang="scss" scoped>
+    form {
+        text-align: center;
+    }
     div {
         padding-bottom: 20px;
+    }
+    input, textarea {
+        width: 80%;
+        padding: 9px 15px;
+        border-radius: 4px;
+        border: 1px solid #919191;
+        box-shadow: 0.5px 2px 4px 1px rgba($color: #919191, $alpha: 0.6);
+    }
+    button {
+        padding: 8px 8px;
+        width: 80%;
+        font-size: 0.6rem;
+        color: #737373;
+        text-transform: uppercase;
+        cursor: pointer;
     }
     .is-invalid {
         border: 1px solid red;
@@ -76,5 +101,4 @@ export default {
         color: red;
         margin: 0;
     }
-
 </style>
