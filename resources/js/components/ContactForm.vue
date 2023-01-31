@@ -43,16 +43,20 @@ export default {
 <template>
     <form @submit.prevent="sendForm()">
         <div>
-            <input v-model.trim="name" type="text" placeholder="Name">
+            <input :class="{'is-invalid' : errors.name}" v-model.trim="name" type="text" placeholder="Name">
+            <p v-for="(error, index) in errors.name" :key="'name' + index" class="error">{{ error }}</p>
         </div>
         <div>
-            <input v-model.trim="email" type="text" placeholder="Email">
+            <input :class="{'is-invalid' : errors.email}" v-model.trim="email" type="text" placeholder="Email">
+            <p v-for="(error, index) in errors.email" :key="'email' + index" class="error">{{ error }}</p>
         </div>
         <div>
-            <input v-model.trim="object" type="text" placeholder="Object">
+            <input :class="{'is-invalid' : errors.object}" v-model.trim="object" type="text" placeholder="Object">
+            <p v-for="(error, index) in errors.object" :key="'object' + index" class="error">{{ error }}</p>
         </div>
         <div>
-           <textarea v-model.trim="message" name="" id="" cols="30" placeholder="Message" rows="10"></textarea>
+           <textarea :class="{'is-invalid' : errors.message}" v-model.trim="message" name="" id="" cols="30" placeholder="Message" rows="10"></textarea>
+           <p v-for="(error, index) in errors.message" :key="'message' + index" class="error">{{ error }}</p>
         </div>
         <button type="submit">Send</button>
     </form>
@@ -68,7 +72,7 @@ export default {
         border: 1px solid red;
     }
     .error {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: red;
         margin: 0;
     }
