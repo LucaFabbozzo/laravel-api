@@ -21,7 +21,11 @@ export default {
                 object: this.object,
                 message: this.message
             }
-            console.log(data)
+
+            axios.post(BASE_URL + 'contacts', data)
+                .then(result => {
+                    console.log(result.data);
+                })
         }
     }
 
