@@ -46,7 +46,9 @@ export default {
 </script>
 
 <template>
-    <form v-if="show" @submit.prevent="sendForm()">
+    <div v-if="show">
+    <h3>For any information please contact me:</h3>
+    <form @submit.prevent="sendForm()">
         <div>
             <input :class="{'is-invalid' : errors.name}" v-model.trim="name" type="text" placeholder="Name">
             <p v-for="(error, index) in errors.name" :key="'name' + index" class="error">{{ error }}</p>
@@ -65,14 +67,15 @@ export default {
         </div>
         <button type="submit" :disabled="loading">{{ loading ? 'Sending email...' : 'Send' }}</button>
     </form>
+    </div>
 
-    <h3 v-else>Email successfully sent!</h3>
+    <h3 v-else>Thanks! your Email was successfully sent!</h3>
 
 </template>
 
 
 <style lang="scss" scoped>
-    form {
+form {
         text-align: center;
     }
     div {
@@ -101,4 +104,10 @@ export default {
         color: red;
         margin: 0;
     }
+    h3 {
+            text-align: center;
+            padding-bottom: 30px;
+            color: #616161;
+            font-weight: lighter;
+        }
 </style>

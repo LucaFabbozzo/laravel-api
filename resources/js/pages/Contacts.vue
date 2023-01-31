@@ -10,7 +10,6 @@ export default {
 
 <template>
     <h1>Contacts</h1>
-    <h3>For any information please contact me:</h3>
     <ContactForm />
 </template>
 
