@@ -24,7 +24,15 @@ export default {
 
             axios.post(BASE_URL + 'contacts', data)
                 .then(result => {
-                    console.log(result.data);
+                    if (!result.data.success) {
+                        this.errors = result.data.errors;
+                    } else {
+                        this.name = '';
+                        this.email = '';
+                        this.object = '';
+                        this.message = '';
+                        this.errors = {};
+                    }
                 })
         }
     }
