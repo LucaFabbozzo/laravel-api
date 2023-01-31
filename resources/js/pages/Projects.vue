@@ -1,37 +1,32 @@
 <script>
 import axios from 'axios';
 import { BASE_URL } from '../data/data';
+import { store } from '../data/store';
 import ProjectItem from '../components/ProjectItem.vue'
 import FormSearch from '../components/FormSearch.vue'
 export default {
     name: 'Projects',
     data() {
         return {
-            projects: {},
-            pagination: {
-                current: null,
-                last: null
-            }
+            BASE_URL,
+            store,
+            active_base_url: BASE_URL + 'projects'
         }
     },
     components: { ProjectItem, FormSearch },
     methods: {
-        getApi(page) {
-            this.pagination.current = page;
-            axios.get(BASE_URL + 'projects', {
-                params: {
-                    page: this.pagination.current
-                }
-            })
+        getApi(url) {
+
+            axios.get(url)
                 .then(result => {
-                    this.projects = result.data.projects.data;
-                    this.pagination.current = result.data.projects.current_page
-                    this.pagination.last = result.data.projects.last_page
+                    store.projects = result.data.projects.data;
+                    store.links = result.data.projects.links;
+                    console.log(store.links);
                 })
         },
     },
     mounted() {
-        this.getApi(1);
+        this.getApi(this.active_base_url);
     }
 }
 </script>
@@ -42,22 +37,16 @@ export default {
 
     <FormSearch />
 
-    <ProjectItem v-for="project in projects" :key="project.id" :project="project"/>
+    <ProjectItem v-for="project in store.projects" :key="project.id" :project="project"/>
 
     <div class="paginate">
-        <button :disabled="pagination.current === 1" @click="getApi(1)"> | &lt;
-        </button>
 
+        <button
+            v-for="link in store.links" :key="link.label"
+            :disabled="link.active || !link.url"
+            @click="getApi(link.url)"
+            v-html="link.label"></button>
 
-        <button :disabled="pagination.current === 1" @click="getApi(pagination.current - 1)">
-            &larr;
-        </button>
-        <button v-for="i in pagination.last" :key="i" :disabled="pagination.current === 1" @click="getApi(i)">
-            {{ i }} </button>
-        <button :disabled="pagination.current === pagination.last" @click="getApi(pagination.current + 1)"> &rarr;
-        </button>
-        <button :disabled="pagination.current === pagination.last" @click="getApi(pagination.last)"> >|
-        </button>
      </div>
 
 </template>
@@ -71,6 +60,7 @@ export default {
         text-align: center;
     }
     .paginate {
+        text-align: center;
         button {
             padding: 5px 8px;
             margin: 2px;

@@ -32,6 +32,6 @@ class ProjectController extends Controller
 
         $projects = Project::where('name', 'like', "%$tosearch%")->with(['type', 'technologies'])->paginate(10);
 
-        return response()->json(compact('posts'));
+        return response()->json(compact('projects'));
     }
 }

@@ -1,12 +1,14 @@
 <script>
 import axios from 'axios';
 import { BASE_URL } from '../data/data';
+import { store } from '../data/store';
 
 export default {
     name: 'FormSearch',
     data() {
         return {
             tosearch: '',
+            store
         }
     },
     methods: {
@@ -17,7 +19,8 @@ export default {
 
             axios.post(BASE_URL + 'projects/search', data)
                 .then(result => {
-                    console.log(result.data);
+                    this.tosearch = '';
+                    store.projects = result.data.projects.data;
                 })
         }
     }
@@ -25,7 +28,7 @@ export default {
 </script>
 
 <template>
-    <input v-model.trim="tosearch" type="text" placeholder="Search">
+    <input v-model.trim="tosearch" type="text" @keyup.enter="getApi" placeholder="Search">
     <button @click="getApi">Send</button>
 
 </template>
