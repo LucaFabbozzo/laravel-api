@@ -4,25 +4,45 @@ import { BASE_URL } from '../data/data'
 
 export default {
     name: 'ContactForm',
+    data() {
+        return {
+            name: '',
+            email: '',
+            object: '',
+            message: '',
+            errors: {},
+        }
+    },
+    methods: {
+        sendForm() {
+            const data = {
+                name: this.name,
+                email: this.email,
+                object: this.object,
+                message: this.message
+            }
+            console.log(data)
+        }
+    }
 
 }
 </script>
 
 <template>
-    <form>
+    <form @submit.prevent="sendForm()">
         <div>
-            <input type="text" placeholder="Name">
+            <input v-model.trim="name" type="text" placeholder="Name">
         </div>
         <div>
-            <input type="text" placeholder="Email">
+            <input v-model.trim="email" type="text" placeholder="Email">
         </div>
         <div>
-            <input type="text" placeholder="Object">
+            <input v-model.trim="object" type="text" placeholder="Object">
         </div>
         <div>
-           <textarea name="" id="" cols="30" placeholder="Message" rows="10"></textarea>
+           <textarea v-model.trim="message" name="" id="" cols="30" placeholder="Message" rows="10"></textarea>
         </div>
-        <button>Send</button>
+        <button type="submit">Send</button>
     </form>
 
 </template>
