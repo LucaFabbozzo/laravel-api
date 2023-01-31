@@ -13,13 +13,11 @@ export default {
             axios.get(BASE_URL + 'projects/' + this.$route.params.slug)
                 .then(res => {
                     this.project = res.data;
-                    console.log(res.data);
             })
 
         }
     },
     mounted() {
-        //console.log(this.$route.params.slug);
         this.getApi();
     }
 }

@@ -27,7 +27,6 @@ export default {
                     this.projects = result.data.projects.data;
                     this.pagination.current = result.data.projects.current_page
                     this.pagination.last = result.data.projects.last_page
-                    console.log(this.projects)
                 })
         },
     },
