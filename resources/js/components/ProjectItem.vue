@@ -24,12 +24,13 @@ export default {
 
 
 <style lang="scss" scoped>
-    .projects-box {
+@use '../../scss/partials/vars' as *;
+.projects-box {
         padding-bottom: 30px;
         h3 {
             padding-bottom: 10px;
             a {
-                color: black;
+                color: $secondary-color;
             }
             p {
                 padding-bottom: 10px;

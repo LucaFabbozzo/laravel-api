@@ -1,3 +1,6 @@
+@use './partials/_vars' as *;
+
+
 * {
     margin: 0;
     padding: 0;
@@ -5,15 +8,13 @@
 }
 
 body {
-    background-color: #f0f0f0;
-    color: #0f0f0f;
+    background-color: $primary-color;
+    color: #9DA2AF;
     font-family: "Lato", sans-serif;
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 40px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
 }

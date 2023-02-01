@@ -75,6 +75,7 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../../scss/partials/vars' as *;
 form {
         text-align: center;
     }
@@ -82,17 +83,23 @@ form {
         padding-bottom: 20px;
     }
     input, textarea {
-        width: 80%;
+        width: 50%;
         padding: 9px 15px;
         border-radius: 4px;
-        border: 1px solid #919191;
-        box-shadow: 0.5px 2px 4px 1px rgba($color: #919191, $alpha: 0.6);
+        font-size: 0.9rem;
+        border: 1px solid #232323;
+        // box-shadow: 0.5px 2px 4px 1px rgba($color: #919191, $alpha: 0.6);
+        background-color: #1F2837;
+        color: $secondary-color;
     }
     button {
-        padding: 8px 8px;
-        width: 80%;
-        font-size: 0.6rem;
-        color: #737373;
+        padding: 9px 15px;
+        width: 50%;
+        font-size: 0.9rem;
+        color: $secondary-color;
+        border: 2px solid #737373;
+        border-radius: 4px;
+        background-color: $tertiary-color;
         text-transform: uppercase;
         cursor: pointer;
     }

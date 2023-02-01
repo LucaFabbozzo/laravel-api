@@ -33,8 +33,6 @@ export default {
 
 <template>
 
-    <h1>Projects List</h1>
-
     <FormSearch />
 
     <ProjectItem v-for="project in store.projects" :key="project.id" :project="project"/>

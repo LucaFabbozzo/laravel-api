@@ -37,12 +37,13 @@ export default {
 <style lang="scss" scoped>
 input {
         margin-bottom: 40px;
-        padding: 5px 10px;
+        padding: 8px 10px;
         border-radius: 4px;
         border: 1px solid #919191;
+        background-color: #e1e1e1;
     }
 button {
-        padding: 5px 10px;
+        padding: 7px 10px;
         width: 60px;
         color: #737373;
         cursor: pointer;

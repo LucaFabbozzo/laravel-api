@@ -18,6 +18,7 @@
 
 
 <style lang="scss" scoped>
+@use '../../scss/partials/vars' as *;
 header {
         ul {
             text-align: center;
@@ -30,10 +31,10 @@ header {
                 font-size: 1.1rem;
                 a {
                     text-decoration: none;
-                    color: #393939;
+                    color: #7b7b7b;
                     &:hover,
                     &.active {
-                        color: #ee6c6c;
+                        color: $tertiary-color;
                     }
                 }
             }
