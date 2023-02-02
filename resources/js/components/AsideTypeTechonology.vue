@@ -11,10 +11,8 @@ export default {
     },
     methods: {
         getApiByTypeTechnology(uri, id) {
-            console.log(`${BASE_URL}projects/${uri}/${id}`);
             axios.get(`${BASE_URL}projects/${uri}/${id}`)
                 .then(result => {
-                    console.log(result.data);
                     store.projects = result.data;
                     store.show_paginate = false;
                 })
@@ -46,7 +44,7 @@ export default {
             </button>
 
             <button @click="$emit('getApi')">
-                Tutti i post
+                All Projects
             </button>
         </div>
     </aside>

@@ -14,9 +14,6 @@ export default {
     methods: {
         getApi() {
 
-            const data = new FormData();
-            data.append('tosearch', this.tosearch);
-
             axios.get(BASE_URL + 'projects/search', {
                 params: {
                     tosearch: this.tosearch
@@ -35,7 +32,6 @@ export default {
 <template>
     <input v-model.trim="tosearch" type="text" @keyup.enter="getApi" placeholder="Search">
     <button @click="getApi">Send</button>
-
 </template>
 
 

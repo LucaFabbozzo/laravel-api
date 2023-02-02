@@ -6,5 +6,6 @@ export const store = reactive({
     technologies: [],
     links: [],
     show_paginate: true,
-    main_title: 'Elenco post'
+    main_title: 'List Projects'
+
 });

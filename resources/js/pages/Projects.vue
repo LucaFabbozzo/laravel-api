@@ -40,9 +40,9 @@ export default {
         <div class="container-projects">
             <h1>{{ store.main_title }}</h1>
             <FormSearch />
-
-            <ProjectItem v-for="project in store.projects" :key="'project' + project.id" :project="project"/>
-
+            <div class="projects-container">
+                <ProjectItem class="project-card" v-for="project in store.projects" :key="'project' + project.id" :project="project"/>
+            </div>
             <div v-if="store.show_paginate" class="paginate">
 
                 <button
@@ -62,7 +62,8 @@ export default {
 
 
 <style lang="scss">
-    h1 {
+@use '../../scss/partials/vars' as *;
+h1 {
         padding-bottom: 40px;
         text-transform: uppercase;
         font-size: 1.5rem;
@@ -81,4 +82,26 @@ export default {
             width: 70%;
         }
     }
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        .project-card {
+                width: 30%;
+                height: 250px;
+                padding: 20px;
+                background-color: #1b243b;
+                border-radius: 5px;
+                margin-bottom: 30px;
+
+                h3 {
+                    padding-bottom: 10px;
+
+                    a {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
 </style>
