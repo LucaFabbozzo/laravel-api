@@ -4,6 +4,7 @@ import { BASE_URL } from '../data/data';
 import { store } from '../data/store';
 import ProjectItem from '../components/ProjectItem.vue'
 import FormSearch from '../components/FormSearch.vue'
+import AsideTypeTechnology from '../components/AsideTypeTechonology.vue'
 export default {
     name: 'Projects',
     data() {
@@ -13,15 +14,18 @@ export default {
             active_base_url: BASE_URL + 'projects'
         }
     },
-    components: { ProjectItem, FormSearch },
+    components: { ProjectItem, FormSearch, AsideTypeTechnology },
     methods: {
         getApi(url) {
 
             axios.get(url)
                 .then(result => {
+                    store.main_title = 'List Project';
                     store.projects = result.data.projects.data;
                     store.links = result.data.projects.links;
-                    console.log(store.links);
+                    store.types = result.data.types;
+                    store.technologies = result.data.technologies;
+                    store.show_paginate = true;
                 })
         },
     },
@@ -32,20 +36,27 @@ export default {
 </script>
 
 <template>
+    <div class="wrapper">
+        <div class="container-projects">
+            <h1>{{ store.main_title }}</h1>
+            <FormSearch />
 
-    <FormSearch />
+            <ProjectItem v-for="project in store.projects" :key="'project' + project.id" :project="project"/>
 
-    <ProjectItem v-for="project in store.projects" :key="project.id" :project="project"/>
+            <div v-if="store.show_paginate" class="paginate">
 
-    <div class="paginate">
+                <button
+                    v-for="link in store.links" :key="link.label"
+                    :disabled="link.active || !link.url"
+                    @click="getApi(link.url)"
+                    v-html="link.label"></button>
 
-        <button
-            v-for="link in store.links" :key="link.label"
-            :disabled="link.active || !link.url"
-            @click="getApi(link.url)"
-            v-html="link.label"></button>
+            </div>
+        </div>
 
-     </div>
+        <AsideTypeTechnology @getApi="getApi()"/>
+
+    </div>
 
 </template>
 
@@ -62,6 +73,12 @@ export default {
         button {
             padding: 5px 8px;
             margin: 2px;
+        }
+    }
+    .wrapper {
+        display: flex;
+        .container-post {
+            width: 70%;
         }
     }
 </style>

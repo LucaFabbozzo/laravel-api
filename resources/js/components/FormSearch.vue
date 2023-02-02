@@ -17,10 +17,15 @@ export default {
             const data = new FormData();
             data.append('tosearch', this.tosearch);
 
-            axios.post(BASE_URL + 'projects/search', data)
+            axios.get(BASE_URL + 'projects/search', {
+                params: {
+                    tosearch: this.tosearch
+                }
+            })
                 .then(result => {
                     this.tosearch = '';
-                    store.projects = result.data.projects.data;
+                    store.projects = result.data;
+                    store.show_paginate = false;
                 })
         }
     }
