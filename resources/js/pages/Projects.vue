@@ -88,8 +88,7 @@ h1 {
             justify-content: space-between;
 
         .project-card {
-                width: 30%;
-                height: 250px;
+                max-width: 280px;
                 padding: 20px;
                 background-color: #1b243b;
                 border-radius: 5px;

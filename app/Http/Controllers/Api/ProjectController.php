@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     public function index() {
-       $projects = Project::orderBy('id', 'desc')->paginate(6);
+       $projects = Project::with(['type', 'technologies'])->orderBy('id', 'desc')->paginate(6);
 
        $types = Type::all();
        $technologies = Technology::all();
