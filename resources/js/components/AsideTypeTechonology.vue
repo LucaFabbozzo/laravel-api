@@ -52,12 +52,19 @@ export default {
 
 
 <style lang="scss" scoped>
+
+aside {
+    h2 {
+        padding-bottom: 5px;
+        font-size: 1rem;
+    }
+}
 .categories {
             padding-left: 90px;
 
             button {
                 display: block;
-                margin: 20px 0;
+                margin: 15px 0;
                 padding: 5px 10px;
             }
         }

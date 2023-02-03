@@ -78,8 +78,8 @@ h1 {
     }
     .wrapper {
         display: flex;
-        .container-post {
-            width: 70%;
+        .container-projects {
+            width: 80%;
         }
     }
         .projects-container {
@@ -90,6 +90,7 @@ h1 {
         .project-card {
                 max-width: 280px;
                 padding: 20px;
+                margin: 10px;
                 background-color: #1b243b;
                 border-radius: 5px;
                 margin-bottom: 30px;
